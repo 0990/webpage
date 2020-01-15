@@ -26,24 +26,28 @@
 			function decimal2other(){
 				var decimal = document.getElementById("decimal").value;
 				decimal = parseInt(decimal);
-				if(isNaN(decimal)){
-					return 
-				}
-				document.getElementById("hex").value = decimal.toString(16);
-				document.getElementById("binary").value = decimal.toString(2);
+				assigndecimal(decimal);
 			}
-
 
 			function hex2other(){
 				var hex = document.getElementById("hex").value;
-				document.getElementById("decimal").value = parseInt(hex,16)
-				decimal2other();
+				var decimal =  parseInt(hex,16);
+				assigndecimal(decimal);
 			}
 
 			function binary2other(){
 				var binary = document.getElementById("binary").value;
-				document.getElementById("decimal").value = parseInt(binary,2)
-				decimal2other();
+				var decimal =  parseInt(binary,2);
+				assigndecimal(decimal);
+			}
+			
+			function assigndecimal(decimal){
+				if(isNaN(decimal)){
+					return 
+				}
+				document.getElementById("decimal").value = decimal;
+				document.getElementById("hex").value = decimal.toString(16);
+				document.getElementById("binary").value = decimal.toString(2);
 			}
 
 			function evalexpression(){
@@ -63,7 +67,7 @@
 				<label class="form-label" for="input-example-1">时间戳：</label>
 			</div>
 			<div class="col-9 col-sm-12">
-				<input class="form-input" id="timestamp" type="number" placeholder="时间戳" onblur="timestamp2time()">
+				<input class="form-input" id="timestamp" type="text" placeholder="时间戳" onblur="timestamp2time()">
 			</div>
 			</div>
 			<div class="form-group">
@@ -81,7 +85,7 @@
 				<label class="form-label" for="input-example-1">十进制：</label>
 			</div>
 			<div class="col-9 col-sm-12">
-				<input class="form-input" id="decimal" type="number" placeholder="十进制" onblur="decimal2other()">
+				<input class="form-input" id="decimal" type="text" placeholder="十进制" onblur="decimal2other()">
 			</div>
 			</div>
 			<div class="form-group">
@@ -97,7 +101,7 @@
 					<label class="form-label" for="input-example-1">二进制：</label>
 				</div>
 				<div class="col-9 col-sm-12">
-					<input class="form-input" id="binary" type="number" placeholder="二进制" onblur="binary2other()">
+					<input class="form-input" id="binary" type="text" placeholder="二进制" onblur="binary2other()">
 				</div>
 			</div>
 		</form>
