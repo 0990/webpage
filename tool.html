@@ -1,0 +1,119 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+		<title>程序员工具箱</title>
+		<script>
+		    function showcurrenttime(){
+				var timestamp=new Date().getTime()/1000;
+				document.getElementById("timestamp").value = parseInt(timestamp);
+				timestamp2time();
+			}
+			function timestamp2time(){
+				var s = document.getElementById("timestamp");
+				var timestamp = s.value;
+				var date = new Date(timestamp*1000 + 8 * 3600 * 1000); // 增加8小时
+                var v = date.toJSON().substr(0, 19).replace('T', ' ');
+				document.getElementById("time").value = v;
+			}
+			
+			function time2timestamp(){
+				var t = document.getElementById("time").value 
+				var date = new Date(t)
+				 document.getElementById("timestamp").value = date.getTime()/1000;
+			}
+
+			function decimal2other(){
+				var decimal = document.getElementById("decimal").value;
+				decimal = parseInt(decimal);
+				document.getElementById("hex").value = decimal.toString(16);
+				document.getElementById("binary").value = decimal.toString(2);
+			}
+
+
+			function hex2other(){
+				var hex = document.getElementById("hex").value;
+				document.getElementById("decimal").value = parseInt(hex,16)
+				decimal2other();
+			}
+
+			function binary2other(){
+				var binary = document.getElementById("binary").value;
+				document.getElementById("decimal").value = parseInt(binary,2)
+				decimal2other();
+			}
+
+			function evalexpression(){
+				var expression = document.getElementById("expression").value;
+				document.getElementById("result").value = eval(expression);
+			}
+		</script>
+	</head>
+	<body>
+		<form class="form-horizontal" style="width:500px">
+		    <div class="form-group">
+		    <div class="col-3 col-sm-12">
+				<label class="form-label" for="input-example-1">时间戳：</label>
+			</div>
+			<div class="col-9 col-sm-12">
+				<input class="form-input" id="timestamp" type="text" placeholder="时间戳" onblur="timestamp2time()">
+			</div>
+			</div>
+			<div class="form-group">
+		    <div class="col-3 col-sm-12">
+				<label class="form-label" for="input-example-1">北京时间：</label>
+			</div>
+			<div class="col-9 col-sm-12">
+				<input class="form-input" id="time" type="text" placeholder="北京时间" onblur="time2timestamp()">
+			</div>
+			</div>
+		</form>
+		<form class="form-horizontal" style="width:500px">
+		    <div class="form-group">
+		    <div class="col-3 col-sm-12">
+				<label class="form-label" for="input-example-1">十进制：</label>
+			</div>
+			<div class="col-9 col-sm-12">
+				<input class="form-input" id="decimal" type="text" placeholder="十进制" onblur="decimal2other()">
+			</div>
+			</div>
+			<div class="form-group">
+		    <div class="col-3 col-sm-12">
+				<label class="form-label" for="input-example-1">十六进制：</label>
+			</div>
+			<div class="col-9 col-sm-12">
+				<input class="form-input" id="hex" type="text" placeholder="十六进制" onblur="hex2other()">
+			</div>
+			</div>
+			<div class="form-group">
+				<div class="col-3 col-sm-12">
+					<label class="form-label" for="input-example-1">二进制：</label>
+				</div>
+				<div class="col-9 col-sm-12">
+					<input class="form-input" id="binary" type="text" placeholder="二进制" onblur="binary2other()">
+				</div>
+			</div>
+		</form>
+		<form class="form-horizontal" style="width:500px">
+		    <div class="form-group">
+		    <div class="col-3 col-sm-12">
+				<label class="form-label" for="input-example-1">表达式：</label>
+			</div>
+			<div class="col-9 col-sm-12">
+				<input class="form-input" id="expression" type="text" placeholder="表达式" onblur="evalexpression()">
+			</div>
+			</div>
+			<div class="form-group">
+		    <div class="col-3 col-sm-12">
+				<label class="form-label" for="input-example-1">结果：</label>
+			</div>
+			<div class="col-9 col-sm-12">
+				<input class="form-input" id="result" type="text" placeholder="结果">
+			</div>
+			</div>
+		</form>
+		<script>
+			showcurrenttime();
+		</script>	
+	</body>
+</html>
