@@ -58,6 +58,23 @@
 				}
 				document.getElementById("result").value = v;
 			}
+
+			function jsonstringify(){
+				var v = document.getElementById("json").value;
+				var obj = null;
+				try {
+					obj = JSON.parse(v);
+				}catch(d){
+				
+				}
+				
+				if (obj == null){
+					console.log("json格式错误");
+					return;
+				}
+				var str = JSON.stringify(obj,null,4);
+				document.getElementById("json").value = str;
+			}
 		</script>
 	</head>
 	<body>
@@ -123,6 +140,9 @@
 			</div>
 			</div>
 		</form>
+		
+			<textarea class="form-input" id="json" placeholder="待格式化的JSON字符串" onblur="jsonstringify()" style="height:500px"></textarea>
+			
 		<script>
 			showcurrenttime();
 		</script>	
