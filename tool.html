@@ -9,6 +9,12 @@
 				document.getElementById("timestamp").value = parseInt(timestamp);
 				timestamp2time();
 			}
+			
+			function showbase64demo(){
+				document.getElementById("expression").value = "btoa('hello')";
+				evalexpression();
+			}
+			
 			function timestamp2time(){
 				var s = document.getElementById("timestamp");
 				var timestamp = s.value;
@@ -145,6 +151,7 @@
 			
 		<script>
 			showcurrenttime();
+			showbase64demo();
 		</script>	
 	</body>
 </html>
