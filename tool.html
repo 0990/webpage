@@ -15,6 +15,21 @@
 				evalexpression();
 			}
 			
+			function showMyIP(){
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function(){
+					if( xhr.readyState == 4){
+						if( xhr.status >= 200 && xhr.status < 300 || xhr.status == 304){
+							document.getElementById("publicIP").value = xhr.responseText;
+						}
+					}
+				};
+
+				var url = "http://api.ipify.org";
+				xhr.open("get", url, true);
+				xhr.send(null);
+			}
+			
 			function timestamp2time(){
 				var s = document.getElementById("timestamp");
 				var timestamp = s.value;
@@ -146,12 +161,23 @@
 			</div>
 			</div>
 		</form>
+		<form class="form-horizontal" style="width:500px">
+		    <div class="form-group">
+		    <div class="col-3 col-sm-12">
+				<label class="form-label" for="input-example-1">公网IP：</label>
+			</div>
+			<div class="col-9 col-sm-12">
+				<input class="form-input" id="publicIP" type="text"">
+			</div>
+			</div>
+		</form>
 		
-			<textarea class="form-input" id="json" placeholder="待格式化的JSON字符串" onblur="jsonstringify()" style="height:500px"></textarea>
+			<textarea class="form-input" id="json" placeholder="待格式化的JSON字符串" onblur="jsonstringify()" style="height:400px"></textarea>
 			
 		<script>
 			showcurrenttime();
 			showbase64demo();
+			showMyIP();
 		</script>	
 	</body>
 </html>
