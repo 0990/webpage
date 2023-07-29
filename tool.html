@@ -20,12 +20,14 @@
 				xhr.onreadystatechange = function(){
 					if( xhr.readyState == 4){
 						if( xhr.status >= 200 && xhr.status < 300 || xhr.status == 304){
-							document.getElementById("publicIP").value = xhr.responseText;
+						    var resp = JSON.parse(xhr.responseText);
+							var content = resp.ip+","+resp.city+","+resp.region+","+resp.country+","+resp.org;
+							document.getElementById("publicIP").value = content;
 						}
 					}
 				};
 
-				var url = "https://api.ipify.org";
+				var url = "https://ipinfo.io/json";
 				xhr.open("get", url, true);
 				xhr.send(null);
 			}
@@ -164,7 +166,7 @@
 		<form class="form-horizontal" style="width:500px">
 		    <div class="form-group">
 		    <div class="col-3 col-sm-12">
-				<label class="form-label" for="input-example-1">公网IP：</label>
+				<label class="form-label" for="input-example-1">公网信息：</label>
 			</div>
 			<div class="col-9 col-sm-12">
 				<input class="form-input" id="publicIP" type="text"">
